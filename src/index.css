@@ -1,0 +1,223 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+    --color-dim-50: #5F99F7;
+    --color-dim-100: #408EED;
+    --color-dim-200: #257CD0;
+    --color-dim-300: #125C96;
+    --color-dim-400: #09395D;
+    --color-dim-500: #08263F;
+    --color-dim-600: #061B30;
+    --color-dim-700: #0a1628;
+    --color-dim-800: #080f1e;
+    --color-dim-900: #060b17;
+    --color-dim-950: #040810;
+
+    --color-accent-blue: #1d9bf0;
+    --color-accent-cyan: #00d4aa;
+    --color-accent-purple: #7856ff;
+    --color-accent-pink: #f91880;
+    --color-glass-light: rgba(255, 255, 255, 0.06);
+    --color-glass-border: rgba(255, 255, 255, 0.08);
+
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+    --animate-fade-in: fade-in 0.4s ease-out both;
+    --animate-fade-in-up: fade-in-up 0.5s ease-out both;
+    --animate-slide-in-right: slide-in-right 0.4s ease-out both;
+    --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+    --animate-shimmer: shimmer 2s ease-in-out infinite;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(29, 155, 240, 0.05); }
+    50% { box-shadow: 0 0 30px rgba(29, 155, 240, 0.12); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(120, 120, 140, 0.25);
+    border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(120, 120, 140, 0.45);
+}
+
+/* Base styles */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glass card utility */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.light .glass-card {
+    background: rgba(247, 249, 252, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Shimmer loading effect */
+.shimmer-bg {
+    background: linear-gradient(
+        90deg,
+        rgba(120, 120, 140, 0.15) 25%,
+        rgba(120, 120, 140, 0.25) 50%,
+        rgba(120, 120, 140, 0.15) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Nav link hover pill */
+.nav-link {
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    inset: -4px -12px;
+    border-radius: 9999px;
+    background: transparent;
+    transition: background 0.2s ease;
+    z-index: -1;
+}
+
+.nav-link:hover::before {
+    background: rgba(29, 155, 240, 0.08);
+}
+
+.dark .nav-link:hover::before {
+    background: rgba(29, 155, 240, 0.12);
+}
+
+/* Gradient text utility */
+.gradient-text {
+    background: linear-gradient(135deg, #1d9bf0, #7856ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Follow button hover gradient */
+.follow-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.follow-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1d9bf0, #7856ff);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+}
+
+.follow-btn:hover::before {
+    opacity: 1;
+}
+
+.follow-btn:hover {
+    border-color: transparent;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(29, 155, 240, 0.3);
+}
+
+.follow-btn > span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Subtle border glow on focus */
+input:focus {
+    box-shadow: 0 0 0 2px rgba(29, 155, 240, 0.2);
+}
+
+/* Tweet card hover */
+.tweet-card {
+    transition: background 0.2s ease;
+}
+
+.tweet-card:hover {
+    background: rgba(29, 155, 240, 0.03);
+}
+
+.dark .tweet-card:hover {
+    background: rgba(29, 155, 240, 0.06);
+}
+
+/* Interaction icon hover */
+.interact-icon {
+    transition: all 0.2s ease;
+    border-radius: 9999px;
+    padding: 6px;
+    margin: -6px;
+}
+
+.interact-icon:hover {
+    background: rgba(29, 155, 240, 0.1);
+    color: #1d9bf0;
+}
+
+/* Post button gradient */
+.btn-gradient {
+    background: linear-gradient(135deg, #1d9bf0 0%, #1a8cd8 100%);
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(29, 155, 240, 0.25);
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #1a8cd8 0%, #1470b5 100%);
+    box-shadow: 0 4px 20px rgba(29, 155, 240, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-gradient:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(29, 155, 240, 0.2);
+}
