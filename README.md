@@ -41,7 +41,7 @@ A Twitter-like application built with React and Vite.
 
 - React
 - Vite
-- CSS
+- Tailwind CSS
 
 ---
 
